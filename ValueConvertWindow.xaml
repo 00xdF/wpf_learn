@@ -1,0 +1,30 @@
+﻿<Window x:Class="wpf_learn.ValueConvertWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpf_learn"
+        mc:Ignorable="d"
+        Title="ValueConvertWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:BoolConverter x:Key="boolConvert"/>
+      
+    </Window.Resources>
+    <Grid>
+        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBox x:Name="text_input" Width="100"/>
+            <StackPanel DockPanel.Dock="Right">
+                <CheckBox IsChecked="{Binding ElementName=text_input,Path=Text,Converter={StaticResource boolConvert}}" Content="Yes"/>
+                <WrapPanel>
+                    <TextBlock Text="name:"/>
+                    <TextBox Text="{Binding Name,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Width="50" Name="text_name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="score:"/>
+                    <TextBox Text="{Binding Score,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Width="50" Name="text_score"/>
+                </WrapPanel>
+            </StackPanel>
+            
+        </DockPanel>
+    </Grid>
+</Window>
